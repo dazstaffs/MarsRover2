@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MarsRover2.NorthDirectionAction">
+    <Position X="269.75" Y="268.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAIABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>NorthDirectionAction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarsRover2.SouthDirectionAction">
+    <Position X="271.5" Y="268.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAIABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>SouthDirectionAction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarsRover2.WestDirectionAction">
+    <Position X="273.25" Y="268.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAAQAAAIAAAA=</HashCode>
+      <FileName>WestDirectionAction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarsRover2.EastDirectionAction">
+    <Position X="268" Y="268.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAAQAAAIAAAA=</HashCode>
+      <FileName>EastDirectionAction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MarsRover2.Rover">
+    <Position X="275.5" Y="266.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACIAAAAACAQAAAAAAIAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Rover.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MarsRover2.IDirectionAction">
+    <Position X="270.75" Y="266.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>IDirectionAction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

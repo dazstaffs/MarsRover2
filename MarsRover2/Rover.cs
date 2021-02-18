@@ -6,65 +6,21 @@ namespace MarsRover2
 {
     public class Rover
     {
-        private int xcoordinate;
-        private int ycoordinate;
-        private Direction compassDirection;
+        private int _xcoordinate;
+        private int _ycoordinate;
+        private char _compassDirection;
+        private IDirectionAction _directionAction;
 
         public Rover(int x, int y, char direction)
         {
-            this.xcoordinate = x;
-            this.ycoordinate = y;
-            this.compassDirection = (Direction)Enum.Parse(typeof(Direction), direction.ToString());
+            this._xcoordinate = x;
+            this._ycoordinate = y;
+            this._compassDirection = direction;
         }
 
         public string GetPosition()
         {
-            return String.Format("The rover's current position is {0},{1},{2}", xcoordinate, ycoordinate, compassDirection);
-        }
-
-        public void Spin(char direction)
-        {
-            int directionDegrees = (int)compassDirection;
-            if (direction == 'L')
-            {
-                directionDegrees = directionDegrees - 90;
-            }
-            if (direction == 'R')
-            {
-                directionDegrees = directionDegrees + 90;
-            }
-            directionDegrees = validateDirection(directionDegrees);
-            compassDirection = (Direction)directionDegrees;
-        }
-
-        public void Move()
-        {
-            bool validMove = validateMove();
-
-            if (validMove)
-            {
-                if (compassDirection == Direction.N)
-                {
-                    ycoordinate = ycoordinate + 1;
-                }
-                if (compassDirection == Direction.E)
-                {
-                    xcoordinate = xcoordinate + 1;
-                }
-                if (compassDirection == Direction.S)
-                {
-                    ycoordinate = ycoordinate - 1;
-                }
-                if (compassDirection == Direction.W)
-                {
-                    xcoordinate = xcoordinate - 1;
-                }
-            }
-            else
-            {
-                return;
-            }
-
+            return String.Format("The rover's current position is {0},{1},{2}", _xcoordinate, _ycoordinate, _compassDirection);
         }
 
         public void ProcessInstruction(string characters)
@@ -73,59 +29,51 @@ namespace MarsRover2
 
             foreach (char character in array)
             {
+                setDirectionAction();
                 if (character != 'M')
                 {
-                    this.Spin(character);
+                    this._compassDirection = _directionAction.Spin(character);
                 }
                 else
                 {
-                    this.Move();
+                    if (this._compassDirection == 'N' || this._compassDirection == 'S')
+                    {
+                        this._ycoordinate = _directionAction.Move();
+                    }
+                    if (this._compassDirection == 'E' || this._compassDirection == 'W')
+                    {
+                        this._xcoordinate = _directionAction.Move();
+                    }
                 }
             }
         }
 
-        private bool validateMove()
+        private void setDirectionAction()
         {
-            if (xcoordinate == 0 && compassDirection == Direction.W)
+            if (_compassDirection == 'N')
             {
-                return false;
+                _directionAction = new NorthDirectionAction(_ycoordinate);
+                return;
             }
-            if (xcoordinate == 5 && compassDirection == Direction.E)
+            if (_compassDirection == 'E')
             {
-                return false;
+                _directionAction = new EastDirectionAction(_xcoordinate);
+                return;
             }
-            if (ycoordinate == 0 && compassDirection == Direction.S)
+            if (_compassDirection == 'S')
             {
-                return false;
+                _directionAction = new SouthDirectionAction(_ycoordinate);
+                return;
             }
-            if (ycoordinate == 5 && compassDirection == Direction.N)
+            if (_compassDirection == 'W')
             {
-                return false;
+                _directionAction = new WestDirectionAction(_xcoordinate);
+                return;
             }
             else
             {
-                return true;
+                throw new Exception("Direction Unknown");
             }
         }
-
-        private static int validateDirection(int directionDegrees)
-        {
-            if (directionDegrees == -90)
-            {
-                directionDegrees = 270;
-            }
-            if (directionDegrees == 450)
-            {
-                directionDegrees = 90;
-            }
-            if (directionDegrees == 360)
-            {
-                directionDegrees = 0;
-            }
-
-            return directionDegrees;
-        }
-
-
     }
 }
